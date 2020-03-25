@@ -1,20 +1,20 @@
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="utf-8">
-      <title>Reseptikirja</title>
-    </head>
-    
-    <body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Reseptikirja</title>
+  </head>
+
+  <body>
       <ul>
-	<li><a href="{{ url_for('tasks_index') }}">Listaa taulut</a></li>
-	<li><a href="{{ url_for('tasks_form') }}">Lisää taulu</a></li>
+	<li><a href="{{ url_for('reseptit_index') }}">Reseptilista</a></li>
+	<li><a href="{{ url_for('reseptit_form') }}">Lisää resepti</a></li>
       </ul>
-      
-      {% block body %}
+
+    {% block body %}
       <p>
-	Content.
+        Content.
       </p>
-      {% endblock %}
-    </body>
-  </html>
+    {% endblock %}
+  </body>
+</html>

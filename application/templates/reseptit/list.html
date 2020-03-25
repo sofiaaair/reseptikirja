@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Reseptit</th>
+    </tr>
+    {% for resepti in reseptilista %}
+    <tr>
+      <td>{{ resepti.name }}</td>
+      <td>
+	<form method="POST" action="{{ url_for('reseptit_delete', resepti_id=resepti.id) }}">
+	  <input type="submit" value="Poista resepti"/>
+	</form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
