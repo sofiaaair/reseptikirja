@@ -20,6 +20,7 @@ from application.reseptit import views
 from application.auth import models
 from application.auth import views
 
+from application.liitostaulu import models
 # Kirjautuminen
 from application.auth.models import Kayttaja
 from os import urandom

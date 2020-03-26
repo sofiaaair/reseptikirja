@@ -9,6 +9,8 @@ class Kayttaja(db.Model):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
+    kayttajaresepti = db.relationship("KayttajaResepti", backref='kayttaja', lazy=True)
+
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
