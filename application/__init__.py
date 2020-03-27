@@ -4,9 +4,15 @@ app = Flask(__name__)
 
 # Tietokanta
 from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///reseptit.db"
+
+import os
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///reseptit.db"
 # Pyydetään SQLAlchemyä tulostamaan kaikki SQL-kyselyt
-app.config["SQLALCHEMY_ECHO"] = True
+    app.config["SQLALCHEMY_ECHO"] = True
 
 # Luodaan db-olio, jota käytetään tietokannan käsittelyyn
 db = SQLAlchemy(app)
@@ -21,6 +27,7 @@ from application.auth import models
 from application.auth import views
 
 from application.liitostaulu import models
+
 # Kirjautuminen
 from application.auth.models import Kayttaja
 from os import urandom
@@ -38,4 +45,8 @@ def load_user(user_id):
     return Kayttaja.query.get(user_id)
 
 # Luodaan lopulta tarvittavat tietokantataulut
-db.create_all()
+try: 
+    db.create_all()
+except:
+    pass
+
