@@ -2,9 +2,10 @@
 
 [Sovellus Herokussa](https://reseptikirjanen.herokuapp.com/)
 
-##### Testitunnukset sovellukseen:
-Username: ada
-Password: lovelace
+#### Testitunnukset sovellukseen:
+Käyttäjätunnus: ada
+
+Salasana: lovelace
 
 [Tietokantakaavio](https://github.com/sofiaaair/reseptikirja/blob/master/kaavio.jpg)
 
@@ -13,6 +14,30 @@ Password: lovelace
 
 Reseptikirjaan voi luoda käyttäjätunnuksen, jonka jälkeen käyttäjä pääsee tutkimaan reseptejä.
 
-Käyttäjä voi tutkia, mitä raaka-aineita hän tarvitsee haluamaansa reseptiin ja toisaalta minkä reseptin hän saa tehtyä jo olemassa olevilla raaka-aineilla.
+## Nykyisiä toiminnallisuuksia:
 
 
+* Sisäänkirjautuminen tunnuksella
+
+* Reseptin lisääminen nimellä
+
+* Reseptin poistaminen
+
+* Tekijän lisääminen reseptille
+
+* Raaka-aineiden lisääminen nimellä
+
+* Neljä toiminnassa olevaa tietokantataulua, joista yksi on monen suhde moneen
+
+
+## Suunniteltuja toiminnallisuuksia:
+
+* Sivu käyttäjätunnuksen luomiseen
+
+* Raaka-aineiden lisääminen reseptiin
+
+* Listaus käyttäjän omista resepteistä
+
+* Listaus käyttäjän omista raaka-aineista
+
+* Listaus ruoista, joita voi tehdä käyttäjän tämänhetkisillä raaka-aineilla
