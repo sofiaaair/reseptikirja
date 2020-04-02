@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Kaytettävissä olevat raaka-aineet</th>
+    </tr>
+    {% for raakaaine in raakaaine %}
+    <tr>
+      <td>{{ raakaaine.name }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

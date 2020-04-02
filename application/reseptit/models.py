@@ -1,11 +1,20 @@
 from application import db
 
-class Resepti(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(144), nullable=False)
+from sqlalchemy.sql import text
 
-    kayttajaresepti = db.relationship("KayttajaResepti", backref='resepti', lazy=True)
+from application.models import Base, Nimellinen
+
+from application.liitostaulu.models import liitostaulu 
+
+class Resepti(Base, Nimellinen):
+
+    kayttajaresepti = db.relationship('Kayttaja', secondary='liitostaulu', lazy='subquery', backref=db.backref('resepti', lazy=True))
 
     def __init__(self, name):
         self.name = name
+
+    def get_id(self):
+        return self.id
+
+
 

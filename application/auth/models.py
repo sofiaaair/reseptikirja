@@ -1,15 +1,15 @@
 from application import db
 
-class Kayttaja(db.Model):
+from application.models import Base, Nimellinen
 
-    __tablename__ = "kayttaja"
-  
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(144), nullable=False)
+from sqlalchemy.sql import text
+
+class Kayttaja(Base, Nimellinen):
+
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    kayttajaresepti = db.relationship("KayttajaResepti", backref='kayttaja', lazy=True)
+    kayttajaresepti = db.relationship('Resepti', secondary='liitostaulu', lazy='subquery', backref=db.backref('kayttaja', lazy=True))
 
     def __init__(self, name, username, password):
         self.name = name
@@ -27,3 +27,14 @@ class Kayttaja(db.Model):
 
     def is_authenticated(self):
         return True
+
+    def get_name(self):
+        return self.name
+
+    @staticmethod
+    def palauta_kaikki_nimet():
+        stmt = text("SELECT Kayttaja.name FROM Kayttaja"
+                    " GROUP BY Kayttaja.id")
+        res =db.engine.execute(stmt)
+
+        return res

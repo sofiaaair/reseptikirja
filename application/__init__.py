@@ -27,6 +27,10 @@ from application.auth import models
 from application.auth import views
 
 from application.liitostaulu import models
+from application.liitostaulu import views
+
+from application.raakaaine import models
+from application.raakaaine import views
 
 # Kirjautuminen
 from application.auth.models import Kayttaja
@@ -43,6 +47,7 @@ login_manager.login_message = "Please login to use this functionality."
 @login_manager.user_loader
 def load_user(user_id):
     return Kayttaja.query.get(user_id)
+
 
 # Luodaan lopulta tarvittavat tietokantataulut
 try: 

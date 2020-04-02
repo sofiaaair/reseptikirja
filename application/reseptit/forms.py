@@ -1,8 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, validators
+from wtforms import StringField, validators, BooleanField
+
+from flask_login import current_user
+
+from application.auth.models import Kayttaja
 
 class ReseptiForm(FlaskForm):
     name = StringField("Reseptin nimi", [validators.Length(min=3)])
- 
+    tekija= StringField("Reseptin tekijä, (koko nimi, esim. Ada Lovelace)")
+
     class Meta:
         csrf = False
