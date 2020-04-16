@@ -11,3 +11,10 @@ class ReseptiForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+
+class ReseptiEditForm(FlaskForm):
+    name = StringField("Muutettavan reseptin nimi", [validators.Length(min=3)])
+    newname = StringField("Uusi reseptin nimi", [validators.Length(min=3)])
+    class Meta:
+        csrf = False

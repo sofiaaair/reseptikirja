@@ -1,0 +1,37 @@
+  {% extends "layout.html" %}
+
+  {% block body %}
+  <form method="POST" action="{{ url_for('reseptit_change') }}">
+    <table>
+      <tr>
+        <td>
+          {{ form.name.label }}
+        </td>
+        <td>
+          {{ form.name }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{ form.newname.label }}
+        </td>
+        <td>
+          {{ form.newname }}
+        </td>
+      </tr>
+        <td>
+          <ul>
+            {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <input type="submit" value="Vaihda reseptin nimi"/>
+        </td>
+      </tr>
+  </form>
+  {% endblock %}
+

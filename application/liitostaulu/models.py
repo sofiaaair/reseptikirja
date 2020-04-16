@@ -10,5 +10,3 @@ liitostaulu = db.Table('liitostaulu',
 
 
 
-
-

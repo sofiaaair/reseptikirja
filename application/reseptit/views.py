@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 from application import app, db
 from application.reseptit.models import Resepti
 from application.reseptit.forms import ReseptiForm
+from application.reseptit.forms import ReseptiEditForm
 
 from sqlalchemy.sql import text
 
@@ -20,6 +21,11 @@ def reseptit_index():
 def reseptit_form():
     return render_template("reseptit/new.html", form = ReseptiForm())
 
+@app.route("/reseptit/edit/")
+@login_required
+def reseptit_edit():
+    return render_template("reseptit/edit.html", form = ReseptiEditForm())
+
 @app.route("/reseptit/<resepti_id>/", methods=["POST"])
 @login_required
 def reseptit_delete(resepti_id):
@@ -29,6 +35,26 @@ def reseptit_delete(resepti_id):
     db.session().commit()
   
     return redirect(url_for("reseptit_index"))
+
+
+@app.route("/reseptit/edit/", methods=["POST"])
+def reseptit_change():
+    form = ReseptiEditForm(request.form)
+    resepti = Resepti.query.filter_by(name = form.name.data).first()
+    reseptinen = Resepti.query.get(resepti.id)
+    reseptinen.name = form.newname.data;
+
+
+
+    if not form.validate():
+        return render_template("reseptit/edit.html", form = form)
+
+    db.session().add(resepti)
+    db.session().commit()
+
+    return redirect(url_for("reseptit_index"))
+
+
 
 
 @app.route("/reseptit/", methods=["POST"])
