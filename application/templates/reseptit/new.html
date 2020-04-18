@@ -20,6 +20,14 @@
           {{ form.tekija }}
         </td>
       </tr>
+      <tr>
+        <td>
+          {{ form.kuvaus.label }}
+        </td>
+        <td>
+          {{ form.kuvaus }}
+        </td>
+      </tr>
 	<td>
 	  <ul>
 	    {% for error in form.name.errors %}

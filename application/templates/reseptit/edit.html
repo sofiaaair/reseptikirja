@@ -3,22 +3,40 @@
   {% block body %}
   <form method="POST" action="{{ url_for('reseptit_change') }}">
     <table>
-      <tr>
+      <div class="container">
+       <div class="row">
+        <div class="col">
+      {% for resepti in reseptilistanen %}
         <td>
-          {{ form.name.label }}
+        <tr>
+         <div class="card-group">
+           <div class="card">
+             <div class="card-body">
+             <h5 class="card-title">{{ resepti.name }}</h5>
+             <p class="card-text">{{ resepti.kuvaus }}</p>
+          </div>
+         </div>
+        </div>
         </td>
+        {% endfor %}
+        </div>
+        <div class="col">
+         <th> Muutettava resepti </th>
         <td>
-          {{ form.name }}
+         <div class="card-group">
+           <div class="card">
+             <div class="card-body">
+             {{ form.name.label }}
+             {{ form.name }}
+             {{ form.newname.label }}
+             {{ form.newname }}
+             <input type="submit" value="Vaihda reseptin nimi"/>
+          </div>
+         </div> 
+        </div>  
         </td>
-      </tr>
-      <tr>
-        <td>
-          {{ form.newname.label }}
-        </td>
-        <td>
-          {{ form.newname }}
-        </td>
-      </tr>
+        </div>
+        </div>
         <td>
           <ul>
             {% for error in form.name.errors %}
@@ -27,11 +45,7 @@
           </ul>
         </td>
       </tr>
-      <tr>
-        <td colspan="2">
-          <input type="submit" value="Vaihda reseptin nimi"/>
-        </td>
-      </tr>
   </form>
+ </table>
   {% endblock %}
 

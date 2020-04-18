@@ -24,7 +24,7 @@ def reseptit_form():
 @app.route("/reseptit/edit/")
 @login_required
 def reseptit_edit():
-    return render_template("reseptit/edit.html", form = ReseptiEditForm())
+    return render_template("reseptit/edit.html", form = ReseptiEditForm(), reseptilistanen = Resepti.query.all())
 
 @app.route("/reseptit/<resepti_id>/", methods=["POST"])
 @login_required
@@ -66,6 +66,7 @@ def reseptit_create():
         return render_template("reseptit/new.html", form = form)
 
     t = Resepti(form.name.data)
+    t.kuvaus = form.kuvaus.data
     t.liitostaulu = form.tekija.data
 
     db.session().add(t)
