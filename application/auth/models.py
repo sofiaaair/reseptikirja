@@ -9,13 +9,13 @@ class Kayttaja(Base, Nimellinen):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    kayttajaresepti = db.relationship('Resepti', secondary='liitostaulu', lazy='subquery', backref=db.backref('kayttaja', lazy=True))
+    reseptit = db.relationship('Resepti', backref='kayttaja', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
         self.password = password
-  
+
     def get_id(self):
         return self.id
 

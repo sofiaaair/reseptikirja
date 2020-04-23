@@ -11,7 +11,9 @@ class Resepti(Base, Nimellinen):
 
     kuvaus = db.Column(db.String(400))
 
-    kayttajaresepti = db.relationship('Kayttaja', secondary='liitostaulu', lazy='subquery', backref=db.backref('resepti', lazy=True))
+    kayttaja_id = db.Column(db.Integer, db.ForeignKey('Kayttaja.id'), nullable = False)
+
+    kayttajaraakaaine = db.relationship('RaakaAine', secondary='liitostaulu', lazy='subquery', backref=db.backref('resepti', lazy=True))
 
 
 

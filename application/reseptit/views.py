@@ -67,7 +67,7 @@ def reseptit_create():
 
     t = Resepti(form.name.data)
     t.kuvaus = form.kuvaus.data
-    t.liitostaulu = form.tekija.data
+    t.kayttaja_id = current_user.id
 
     db.session().add(t)
     db.session().commit()
